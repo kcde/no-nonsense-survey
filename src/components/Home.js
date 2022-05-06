@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import ShawarmaLogo from './ShawarmaLogo'
 import { GoogleLoginButton } from 'react-social-login-buttons'
@@ -19,7 +18,7 @@ function Home() {
                     <span className="decoration-red-400 underline underline-offset-4">
                         authenticate
                     </span>{' '}
-                    with your google account to ge started
+                    with your google account to ge started.
                 </p>
             </Row>
             <Row className="w-60 mx-auto  ">
