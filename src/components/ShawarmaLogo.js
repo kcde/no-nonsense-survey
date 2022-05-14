@@ -4,7 +4,7 @@ import shawarmaImg from '../assets/shawarma.png'
 
 function ShawarmaLogo() {
     return (
-        <Row className=" flex justify-center animate-bounce">
+        <Row className=" flex justify-center lg:animate-bounce">
             <img src={shawarmaImg} alt="shawarma" className="w-24" />
         </Row>
     )
