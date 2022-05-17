@@ -5,7 +5,7 @@ function SurveyTracker() {
   const { questions, questionNumber } = useContext(GlobalContext)
 
   return (
-    <div className="flex space-x-1 ">
+    <div className="flex space-x-1 rounded-full overflow-hidden ">
       {questions.map((question) => (
         <div
           key={question.id}
