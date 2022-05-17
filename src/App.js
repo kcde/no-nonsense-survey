@@ -12,7 +12,7 @@ import { Navigate } from 'react-router-dom'
 function App() {
   const { isLoggedIn } = useContext(GlobalContext)
   return (
-    <Container className="App h-screen grid items-center max-w-md mx-auto font-mono">
+    <Container className="App h-screen grid items-center max-w-md mx-auto px-4 font-mono">
       <div>
         <ShawarmaLogo />
 
