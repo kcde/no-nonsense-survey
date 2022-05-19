@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import GlobalContext from '../context'
+import ShawarmaLogo from '../components/ShawarmaLogo'
 import Row from 'react-bootstrap/Row'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { GoogleLoginButton } from 'react-social-login-buttons'
@@ -21,6 +22,8 @@ function Home() {
   return (
     <Row className="">
       <Row className="text-center mb-4 mt-2">
+        <ShawarmaLogo />
+
         <p className="leading-relaxed">
           Hi, this is a simple, straight forward, no bullshit survey form for a
           fun side project for those that are in love with{' '}

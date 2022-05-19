@@ -8,16 +8,16 @@ import SurveyTracker from './SurveyTracker'
 
 function Survey() {
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
+
   const {
-    credentials,
     setLoggedIn,
     questions,
     questionNumber,
     setQuestionNumber,
+    formSubmitted,
+    setFormSubmitted,
   } = useContext(GlobalContext)
 
-  //addUser()
-  getUser()
   const resetDisabled = () => {
     setIsQuestionAnswered(true)
   }
@@ -27,6 +27,7 @@ function Survey() {
   }
 
   const submitHandler = () => {
+    setFormSubmitted(true)
     console.log('submit')
   }
 
@@ -39,15 +40,6 @@ function Survey() {
 
   return (
     <div>
-      <div className="   flex justify-end mb-4 p-1">
-        <div>
-          <img
-            className="w-8 h-8 rounded-full"
-            src={credentials && credentials.photoURL}
-            alt={credentials && credentials.displayName}
-          />
-        </div>
-      </div>
       <div className="mb-1">
         <SurveyTracker />
       </div>
@@ -61,6 +53,7 @@ function Survey() {
             />
           )
       )}
+
       <div className="mt-4">
         <Button onClick={() => buttonHandler()} disabled={false}>
           {questionNumber >= questions.length ? 'submit' : 'next'}

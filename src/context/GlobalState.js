@@ -9,6 +9,7 @@ function GlobalState({ children }) {
   const [isLoggedIn, setLoggedIn] = useState(login || false)
   const [credentials, setCredentials] = useState({})
   const [questionNumber, setQuestionNumber] = useState(1)
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -38,6 +39,8 @@ function GlobalState({ children }) {
         questions: surveyQuestions,
         questionNumber,
         setQuestionNumber,
+        formSubmitted,
+        setFormSubmitted,
       }}
     >
       {children}

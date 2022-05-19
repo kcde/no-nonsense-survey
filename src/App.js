@@ -4,18 +4,26 @@ import GlobalContext from './context'
 import Container from 'react-bootstrap/Container'
 import Home from './components/Home'
 import Survey from './components/Survey'
-import ShawarmaLogo from './components/ShawarmaLogo'
 import { Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Navigate } from 'react-router-dom'
 
 function App() {
-  const { isLoggedIn } = useContext(GlobalContext)
+  const { isLoggedIn, credentials } = useContext(GlobalContext)
   return (
     <Container className="App h-screen grid items-center max-w-md mx-auto px-4 font-mono">
       <div>
-        <ShawarmaLogo />
-
+        <div className="   flex justify-end mb-4 p-1">
+          {credentials && (
+            <div>
+              <img
+                className="w-8 h-8 rounded-full"
+                src={credentials && credentials.photoURL}
+                alt={credentials && credentials.displayName}
+              />
+            </div>
+          )}
+        </div>
         <Routes>
           <Route
             path="/"

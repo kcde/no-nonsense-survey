@@ -4,6 +4,7 @@ import { app } from './firebase'
 export const db = getDatabase(app)
 
 function getUser(id) {
+  id = 2
   return get(ref(db, `users/${id}`))
 }
 
