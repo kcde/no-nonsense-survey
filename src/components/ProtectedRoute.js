@@ -3,6 +3,7 @@ import { getUser } from '../firebase/database'
 import GlobalContext from '../context'
 import { Navigate, useLocation } from 'react-router-dom'
 import SurveyTaken from '../components/SurveyTaken'
+import LoadingSpinner from './LoadingSpinner'
 
 function ProtectedRoute({ children }) {
   const { isLoggedIn, credentials, formSubmitted, setFormSubmitted } =
@@ -32,7 +33,11 @@ function ProtectedRoute({ children }) {
   //if user is not loggedin navigate to homepage
 
   if (hasUserTaken === null) {
-    return <p>loading</p>
+    return (
+      <div className="flex justify-center">
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   if (!isLoggedIn) {

@@ -15,12 +15,14 @@ function Survey() {
     questionNumber,
     setQuestionNumber,
     formSubmitted,
+    userResponse,
     setFormSubmitted,
   } = useContext(GlobalContext)
 
   const resetDisabled = () => {
     setIsQuestionAnswered(true)
   }
+
   const nextHandler = () => {
     setQuestionNumber((prevState) => prevState + 1)
     resetDisabled()
@@ -28,7 +30,7 @@ function Survey() {
 
   const submitHandler = () => {
     setFormSubmitted(true)
-    console.log('submit')
+    console.log(userResponse)
   }
 
   const buttonHandler = () => {
@@ -47,6 +49,7 @@ function Survey() {
         (question) =>
           question.id === questionNumber && (
             <QuestionCard
+              value={userResponse[question.id]}
               key={question.id}
               question={question}
               show={questionNumber === question.id}

@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import GlobalContext from '../../context'
 import Options from './Options'
 import TextArea from './TextArea'
 
 function QuestionCard({ show, question, setQuestionNumber }) {
+  const { setUserResponse, userResponse } = useContext(GlobalContext)
+
+  const onChangeHandler = (id, value) => {
+    setUserResponse((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }))
+  }
   return (
     <div className="bg-slate-100 rounded-2xl p-6 shadow-xl ">
       <div className="flex items-center">
@@ -13,7 +22,16 @@ function QuestionCard({ show, question, setQuestionNumber }) {
           {question.question}
         </p>
       </div>
-      {question.options ? <Options options={question.options} /> : <TextArea />}
+      {question.options ? (
+        <Options
+          options={question.options}
+          questionId={question.id}
+          onChangeHandler={onChangeHandler}
+          response={userResponse[question.id]}
+        />
+      ) : (
+        <TextArea />
+      )}
     </div>
   )
 }
