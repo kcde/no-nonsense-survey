@@ -4,13 +4,13 @@ import { app } from './firebase'
 export const db = getDatabase(app)
 
 function getUser(id) {
-  id = 2
   return get(ref(db, `users/${id}`))
 }
 
-function addUser() {
-  set(ref(db, 'users/1'), {
-    name: 'keside',
+function addUser(info) {
+  return set(ref(db, `users/${info.uid}`), {
+    name: info.displayName,
+    email: info.email,
   })
 }
 function addUserResponse() {}

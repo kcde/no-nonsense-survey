@@ -10,6 +10,7 @@ function Survey() {
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
 
   const {
+    credentials,
     setLoggedIn,
     questions,
     questionNumber,
@@ -18,6 +19,8 @@ function Survey() {
     userResponse,
     setFormSubmitted,
   } = useContext(GlobalContext)
+
+  console.log(credentials)
 
   const resetDisabled = () => {
     setIsQuestionAnswered(true)
@@ -29,8 +32,10 @@ function Survey() {
   }
 
   const submitHandler = () => {
-    setFormSubmitted(true)
-    console.log(userResponse)
+    addUser(credentials).then(() => {
+      setFormSubmitted(true)
+      console.log(userResponse)
+    })
   }
 
   const buttonHandler = () => {
