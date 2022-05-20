@@ -30,7 +30,11 @@ function QuestionCard({ show, question, setQuestionNumber }) {
           response={userResponse[question.id]}
         />
       ) : (
-        <TextArea />
+        <TextArea
+          questionId={question.id}
+          response={userResponse[question.id]}
+          onChangeHandler={onChangeHandler}
+        />
       )}
     </div>
   )
