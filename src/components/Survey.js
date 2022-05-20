@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { addUser, getUser } from '../firebase/database'
+import React, { useContext, useState } from 'react'
+import { addUser } from '../firebase/database'
 import GlobalContext from '../context'
 import { logout } from '../firebase/auth'
 import QuestionCard from './QuestionCard'
@@ -15,15 +15,12 @@ function Survey() {
     questions,
     questionNumber,
     setQuestionNumber,
-    formSubmitted,
     userResponse,
     setFormSubmitted,
   } = useContext(GlobalContext)
 
-  console.log(credentials)
-
   const resetDisabled = () => {
-    setIsQuestionAnswered(true)
+    setIsQuestionAnswered(false)
   }
 
   const nextHandler = () => {
@@ -57,13 +54,13 @@ function Survey() {
               value={userResponse[question.id]}
               key={question.id}
               question={question}
-              show={questionNumber === question.id}
+              setIsQuestionAnswered={setIsQuestionAnswered}
             />
           )
       )}
 
       <div className="mt-4">
-        <Button onClick={() => buttonHandler()} disabled={false}>
+        <Button onClick={() => buttonHandler()} disabled={!isQuestionAnswered}>
           {questionNumber >= questions.length ? 'submit' : 'next'}
         </Button>
       </div>

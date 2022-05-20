@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import GlobalContext from '../../context'
 import Options from './Options'
 import TextArea from './TextArea'
 
-function QuestionCard({ show, question, setQuestionNumber }) {
+function QuestionCard({ question, setIsQuestionAnswered }) {
   const { setUserResponse, userResponse } = useContext(GlobalContext)
 
   const onChangeHandler = (id, value) => {
@@ -12,6 +12,14 @@ function QuestionCard({ show, question, setQuestionNumber }) {
       [id]: value,
     }))
   }
+  useEffect(() => {
+    if (userResponse[question.id] === '') {
+      setIsQuestionAnswered(false)
+    } else {
+      setIsQuestionAnswered(true)
+    }
+  })
+
   return (
     <div className="bg-slate-100 rounded-2xl p-6 shadow-xl ">
       <div className="flex items-center">

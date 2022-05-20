@@ -14,7 +14,6 @@ function ProtectedRoute({ children }) {
     if (credentials) {
       getUser(credentials.uid)
         .then((snapshot) => {
-          console.log(snapshot.val())
           if (snapshot.val()) {
             setHasUserTaken(true)
             setFormSubmitted(true)
