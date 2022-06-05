@@ -16,11 +16,14 @@ function App() {
         <div className="   flex justify-end mb-4 p-1">
           {credentials && (
             <div>
-              <img
-                className="w-8 h-8 rounded-full"
-                src={credentials && credentials.photoURL}
-                alt={credentials && credentials.displayName}
-              />
+              {credentials && (
+                <img
+                  referrerPolicy="no-referrer"
+                  className="w-8 h-8 rounded-full"
+                  src={credentials.photoURL}
+                  alt={credentials.displayName}
+                />
+              )}
             </div>
           )}
         </div>

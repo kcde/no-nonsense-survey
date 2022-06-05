@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react'
-import { addUser } from '../firebase/database'
+import React, { useContext, useState, useEffect } from 'react'
+import { addUser, addUserResponse } from '../firebase/database'
 import GlobalContext from '../context'
 import { logout } from '../firebase/auth'
 import QuestionCard from './QuestionCard'
 import Button from './Button'
 import SurveyTracker from './SurveyTracker'
+import CTA from './CTA'
 
 function Survey() {
   const [isQuestionAnswered, setIsQuestionAnswered] = useState(false)
@@ -16,8 +17,18 @@ function Survey() {
     questionNumber,
     setQuestionNumber,
     userResponse,
+    setUserResponse,
     setFormSubmitted,
+    userLikesShawarma,
+    setUserLikesShawarma,
   } = useContext(GlobalContext)
+
+  useEffect(() => {
+    return () => {
+      setUserLikesShawarma(true)
+      setQuestionNumber(1)
+    }
+  }, [])
 
   const resetDisabled = () => {
     setIsQuestionAnswered(false)
@@ -32,6 +43,10 @@ function Survey() {
     addUser(credentials).then(() => {
       setFormSubmitted(true)
       console.log(userResponse)
+      addUserResponse(credentials.uid, userResponse).then(() => {
+        setUserResponse({})
+        setQuestionNumber(1)
+      })
     })
   }
 
@@ -44,27 +59,37 @@ function Survey() {
 
   return (
     <div>
-      <div className="mb-1">
-        <SurveyTracker />
-      </div>
-      {questions.map(
-        (question) =>
-          question.id === questionNumber && (
-            <QuestionCard
-              value={userResponse[question.id]}
-              key={question.id}
-              question={question}
-              setIsQuestionAnswered={setIsQuestionAnswered}
-            />
-          )
+      {userLikesShawarma ? (
+        <div>
+          {' '}
+          <div className="mb-1">
+            <SurveyTracker />
+          </div>
+          {questions.map(
+            (question) =>
+              question.id === questionNumber && (
+                <QuestionCard
+                  value={userResponse[question.id]}
+                  key={question.id}
+                  question={question}
+                  setIsQuestionAnswered={setIsQuestionAnswered}
+                />
+              )
+          )}
+          <div className="mt-4">
+            <Button
+              onClick={() => buttonHandler()}
+              disabled={!isQuestionAnswered}
+            >
+              {questionNumber >= questions.length ? 'submit' : 'next'}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <CTA />
       )}
 
-      <div className="mt-4">
-        <Button onClick={() => buttonHandler()} disabled={!isQuestionAnswered}>
-          {questionNumber >= questions.length ? 'submit' : 'next'}
-        </Button>
-      </div>
-      <button
+      {/* <button
         onClick={() => {
           logout().then(() => {
             setLoggedIn(false)
@@ -72,7 +97,7 @@ function Survey() {
         }}
       >
         logout
-      </button>
+      </button> */}
     </div>
   )
 }

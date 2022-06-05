@@ -7,16 +7,44 @@ import { GoogleLoginButton } from 'react-social-login-buttons'
 import { signIn } from '../firebase/auth'
 
 function Home() {
-  const { testing, setLoggedIn } = useContext(GlobalContext)
+  const { setLoggedIn } = useContext(GlobalContext)
   let navigate = useNavigate()
   let location = useLocation()
   const from = location.state ? location.state.from.pathname : '/survey'
 
+  /* .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            //const credential = GoogleAuthProvider.credentialFromResult(result)
+            //const token = credential.accessToken
+            // The signed-in user info.
+            //const user = result.user
+            // ...
+            //console.log(user.displayName) // send user's name to global state $$contextAPi
+          })
+          .catch((error) => {
+              // Handle Errors here.
+              // const errorCode = error.code
+              //const errorMessage = error.message
+              console.log(error)
+  
+              // The email of the user's account used.
+              //const email = error.email
+  
+              // ...
+          })
+          */
+
   function singInAndNavigate() {
-    signIn().then(() => {
-      setLoggedIn(true)
-      navigate(from)
-    })
+    signIn()
+      .then((result) => {
+        setLoggedIn(true)
+        navigate(from)
+      })
+      .catch((err) => {
+        console.log('couldnt sign in')
+
+        setLoggedIn(false)
+      })
   }
 
   return (
@@ -28,7 +56,7 @@ function Home() {
           Hi, this is a simple, straight forward, no bullshit survey form for a
           fun side project for those that are in love with{' '}
           <span className="underline underline-offset-4 decoration-red-400 ">
-            shawarma {testing}
+            shawarma
           </span>
           . Please{' '}
           <span className="decoration-red-400 underline underline-offset-4">

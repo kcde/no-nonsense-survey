@@ -6,8 +6,9 @@ import surveyQuestions from '../questions'
 
 function GlobalState({ children }) {
   const login = JSON.parse(localStorage.getItem('survey-login'))
+  const [userLikesShawarma, setUserLikesShawarma] = useState(true)
   const [isLoggedIn, setLoggedIn] = useState(login || false)
-  const [credentials, setCredentials] = useState({})
+  const [credentials, setCredentials] = useState(null)
   const [questionNumber, setQuestionNumber] = useState(1)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [userResponse, setUserResponse] = useState({
@@ -21,6 +22,19 @@ function GlobalState({ children }) {
     8: '',
     9: '',
   })
+
+  function reset() {
+    setQuestionNumber(1)
+    setCredentials(null)
+    setUserResponse({})
+  }
+  const userLikesShawarmaResponse = userResponse['1']
+  useEffect(() => {
+    if (userLikesShawarmaResponse === 'no' && questionNumber > 1) {
+      setUserLikesShawarma(false)
+      return
+    }
+  }, [userLikesShawarmaResponse, questionNumber])
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -54,6 +68,9 @@ function GlobalState({ children }) {
         setFormSubmitted,
         userResponse,
         setUserResponse,
+        userLikesShawarma,
+        setUserLikesShawarma,
+        reset,
       }}
     >
       {children}

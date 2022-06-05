@@ -13,6 +13,10 @@ function addUser(info) {
     email: info.email,
   })
 }
-function addUserResponse() {}
+function addUserResponse(id, response) {
+  return set(ref(db, `responses/${id}`), {
+    ...response,
+  })
+}
 
 export { getUser, addUser, addUserResponse }

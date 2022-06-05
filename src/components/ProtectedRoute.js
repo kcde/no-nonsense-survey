@@ -31,16 +31,16 @@ function ProtectedRoute({ children }) {
 
   //if user is not loggedin navigate to homepage
 
+  if (!isLoggedIn) {
+    return <Navigate to="/" state={{ from: location }} replace />
+  }
+
   if (hasUserTaken === null) {
     return (
       <div className="flex justify-center">
         <LoadingSpinner />
       </div>
     )
-  }
-
-  if (!isLoggedIn) {
-    return <Navigate to="/" state={{ from: location }} replace />
   }
 
   //if user has taken survey
