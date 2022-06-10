@@ -67,7 +67,7 @@ function Home() {
       </Row>
       <Row className="w-60 mx-auto  ">
         <GoogleLoginButton
-          style={{ fontSize: '16px' }}
+          style={{ fontSize: '13px' }}
           onClick={singInAndNavigate}
         />
       </Row>
