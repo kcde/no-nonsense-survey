@@ -49,12 +49,12 @@ function Home() {
 
   return (
     <Row className="">
-      <Row className="text-center mb-4 mt-2">
+      <Row className="text-center mb-4 mt-2 ">
         <ShawarmaLogo />
 
         <p className="leading-relaxed">
-          Hi, this is a simple, straight forward, no bullshit survey form for a
-          fun side project for those that are in love with{' '}
+          Hi, this is a simple, straight forward, survey form for a fun side
+          project for those that love{' '}
           <span className="underline underline-offset-4 decoration-red-400 ">
             shawarma
           </span>
@@ -63,6 +63,10 @@ function Home() {
             authenticate
           </span>{' '}
           with your google account to ge started.
+        </p>
+
+        <p className="text-[8px] text-red-600 rotate-90 absolute right-0  translate-y-1/2 origin-top-right">
+          Kindly disregard is shawarma is not tyour thing
         </p>
       </Row>
       <Row className="w-60 mx-auto  ">
