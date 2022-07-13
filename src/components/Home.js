@@ -66,7 +66,7 @@ function Home() {
         </p>
 
         <p className="text-[8px] text-red-600 rotate-90 absolute right-0  translate-y-1/2 origin-top-right">
-          Kindly disregard is shawarma is not tyour thing
+          Kindly disregard if shawarma is not your thing
         </p>
       </Row>
       <Row className="w-60 mx-auto  ">
