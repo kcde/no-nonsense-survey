@@ -62,7 +62,7 @@ function Home() {
           <span className="decoration-red-400 underline underline-offset-4">
             authenticate
           </span>{' '}
-          with your google account to ge started.
+          with your google account to get started.
         </p>
 
         <p className="text-[8px] text-red-600 rotate-90 absolute right-0  translate-y-1/2 origin-top-right">
