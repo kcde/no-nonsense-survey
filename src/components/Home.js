@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import GlobalContext from '../context'
-import ShawarmaLogo from '../components/ShawarmaLogo'
+import ShawarmaLogo from './shawarmaLogo/ShawarmaLogo'
 import Row from 'react-bootstrap/Row'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { GoogleLoginButton } from 'react-social-login-buttons'
